@@ -11,7 +11,14 @@ mc.listen("onChat", (pl, message) => {
     if (msg.length !== 0) {
       mc.broadcast(`§aG §7| §f${pl.realName} §${dimClr(pl.pos.dimid)}» §f${msg}`);
       client.createMessage(config.bot.channel, { "embeds": [{ "color": 0x55FFFF, "description": `**${pl.realName} » ${msg}**` }] });
-      (message.match(/@(\w+)/g) || []).map(mention => mention.slice(1)).forEach((name) => { let pl = mc.getPlayer(name); mc.runcmdEx(`execute at "${pl.realName}" run playsound note.bell "${pl.realName}" ~~~ 1 2 1`) });
+      (message.match(/@(\w+)/g) || []).map(mention => mention.slice(1)).forEach((name) => {
+        if (name !== "here") {
+          let pl = mc.getPlayer(name);
+          mc.runcmdEx(`execute at "${pl.realName}" run playsound note.bell "${pl.realName}" ~~~ 1 2 1`);
+        } else {
+          mc.runcmdEx(`playsound note.bell @a ~~~ 1 2 1`);
+        }
+      });
       log(`[Global] ${pl.realName} » ${msg}`);
     }
   } else {
