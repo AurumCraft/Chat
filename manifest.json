@@ -21,11 +21,7 @@
     },
     "emoji": {
       "list": [
-        { "name": "yeh", "hex": "0xE120" },
-        { "name": "uwu", "hex": "0xE121" },
-        { "name": "what", "hex": "0xE122" },
-        { "name": "amogus", "hex": "0xE1b0" },
-        { "name": "diamond", "hex": "0xE1b1" }
+        { "name": "Название", "hex": "HEX код" }
       ]
     }
   }

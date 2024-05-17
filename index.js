@@ -11,14 +11,30 @@ mc.listen("onChat", (pl, message) => {
     if (msg.length !== 0) {
       mc.broadcast(`§aG §7| §f${pl.realName} §${dimClr(pl.pos.dimid)}» §f${msg}`);
       client.createMessage(config.bot.channel, { "embeds": [{ "color": 0x55FFFF, "description": `**${pl.realName} » ${msg}**` }] });
-      log(`[Chat/Global] ${pl.realName} » ${msg}`);
+      (message.match(/@(\w+)/g) || []).map(mention => mention.slice(1)).forEach((name) => { let pl = mc.getPlayer(name); mc.runcmdEx(`execute at "${pl.realName}" run playsound note.bell "${pl.realName}" ~~~ 1 2 1`) });
+      log(`[Global] ${pl.realName} » ${msg}`);
     }
   } else {
     mc.getOnlinePlayers().forEach((lpl) => distance(pl, lpl) <= config.chat.radius ? lpl.tell(`§6L §7| §f${pl.realName} §${dimClr(pl.pos.dimid)}» §f${msg}`) : false);
-    log(`[Chat/Local] ${pl.realName} » ${msg}`);
+    log(`[Local] ${pl.realName} » ${msg}`);
   } return false;
+});
+
+mc.listen("onPlayerCmd", (pl, cmd) => {
+  cmd = cmd.split(/\s+/);
+  if (cmd[0] == "msg") {
+    let tr = mc.getPlayer(cmd[1]);
+    pl.tell(`§7[ §fВы §8» §f${cmd[1]}§7 ] §f${cmd.slice(2).join(" ")}`);
+    tr.tell(`§7[ §f${pl.realName} §8» §fВы§7 ] §f${cmd.slice(2).join(" ")}`);
+    mc.runcmdEx(`playsound mob.silverfish.kill "${cmd[1]}"`);
+    log(`[PM/${pl.realName} » ${cmd[1]}] ${cmd.slice(2).join(" ")}`);
+    return false;
+  } else if (cmd[0] == "tell" || cmd[0] == "w") {
+    pl.tell(`§cОтключено. Используйте "msg".`);
+    return false;
+  }
 });
 
 mc.listen("onPreJoin", (pl) => client.createMessage(config.bot.channel, { "embeds": [{ "color": 0xFFFF55, "description": `**${pl.realName} присоединился к игре!**` }] }));
 mc.listen("onLeft", (pl) => client.createMessage(config.bot.channel, { "embeds": [{ "color": 0xFFFF55, "description": `**${pl.realName} покинул игру!**` }] }));
-mc.listen("onPlayerDie", (pl, src) => client.createMessage(config.bot.channel, { "embeds": [{ "color": 0xFFFF55, "description": `**${pl.realName} умер от: ${src == null ? "неизвестно" : src.name }!**` }] }));
+mc.listen("onPlayerDie", (pl, src) => client.createMessage(config.bot.channel, { "embeds": [{ "color": 0xFF5555, "description": `**${pl.realName} умер, убийца ${src == null ? "[ неизвестно ]" : src.name}!**` }] }));
