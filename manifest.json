@@ -1,0 +1,12 @@
+{
+  "name": "-Chat",
+  "version": "0.0.1",
+  "entry": "index.js",
+  "type": "lse-nodejs",
+  "dependencies": [
+      {
+          "name": "legacy-script-engine-nodejs"
+      }
+  ],
+  "config": {}
+}
