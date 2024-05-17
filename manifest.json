@@ -1,5 +1,5 @@
 {
-  "name": "-Chat",
+  "name": "Chat",
   "version": "0.0.1",
   "entry": "index.js",
   "type": "lse-nodejs",
@@ -8,5 +8,26 @@
           "name": "legacy-script-engine-nodejs"
       }
   ],
-  "config": {}
+  "config": {
+    "bot": {
+      "status": { "type": "idle" },
+      "activity": { "type": 3, "name": "за чатом" },
+      "token": "",
+      "channel": ""
+    },
+    "chat": {
+      "radius": 60,
+      "prefix": "!"
+    },
+    "emoji": {
+      "closets": ":",
+      "list": [
+        { "name": "yeh", "hex": "0xE120" },
+        { "name": "uwu", "hex": "0xE121" },
+        { "name": "what", "hex": "0xE122" },
+        { "name": "amogus", "hex": "0xE1b0" },
+        { "name": "diamond", "hex": "0xE1b1" }
+      ]
+    }
+  }
 }
