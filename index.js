@@ -19,6 +19,6 @@ mc.listen("onChat", (pl, message) => {
   } return false;
 });
 
-mc.listen("onPreJoin", (pl) => client.createMessage(config.bot.channel, [{ "embeds": { "color": 0xFFFF55, "description": `**${pl.realName} присоединился к игре!**` } }]));
-mc.listen("onLeft", (pl) => client.createMessage(config.bot.channel, [{ "embeds": { "color": 0xFFFF55, "description": `**${pl.realName} покинул игру!**` } }]));
-mc.listen("onPlayerDie", (pl, src) => client.createMessage(config.bot.channel, { "embeds": [{ "color": 0xFFFF55, "description": `**${pl.realName} умер от: ${src == null ? "неизвестно" : src.name }!**` } }]));
+mc.listen("onPreJoin", (pl) => client.createMessage(config.bot.channel, { "embeds": [{ "color": 0xFFFF55, "description": `**${pl.realName} присоединился к игре!**` }] }));
+mc.listen("onLeft", (pl) => client.createMessage(config.bot.channel, { "embeds": [{ "color": 0xFFFF55, "description": `**${pl.realName} покинул игру!**` }] }));
+mc.listen("onPlayerDie", (pl, src) => client.createMessage(config.bot.channel, { "embeds": [{ "color": 0xFFFF55, "description": `**${pl.realName} умер от: ${src == null ? "неизвестно" : src.name }!**` }] }));
