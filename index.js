@@ -10,7 +10,7 @@ mc.listen("onChat", (pl, message) => {
     msg = msg.replace(config.chat.prefix, "");
     if (msg.length !== 0) {
       mc.broadcast(`§aG §7| §f${pl.realName} §${dimClr(pl.pos.dimid)}» §f${msg}`);
-      client.createMessage(config.bot.channel, { "embeds": { "color": 0x55FFFF, "description": `**${pl.realName} » ${msg}**` } });
+      client.createMessage(config.bot.channel, { "embeds": [{ "color": 0x55FFFF, "description": `**${pl.realName} » ${msg}**` }] });
       log(`[Chat/Global] ${pl.realName} » ${msg}`);
     }
   } else {
@@ -21,4 +21,4 @@ mc.listen("onChat", (pl, message) => {
 
 mc.listen("onPreJoin", (pl) => client.createMessage(config.bot.channel, { "embeds": [{ "color": 0xFFFF55, "description": `**${pl.realName} присоединился к игре!**` }] }));
 mc.listen("onLeft", (pl) => client.createMessage(config.bot.channel, { "embeds": [{ "color": 0xFFFF55, "description": `**${pl.realName} покинул игру!**` }] }));
-mc.listen("onPlayerDie", (pl, src) => client.createMessage(config.bot.channel, { "embeds": [{ "color": 0xFFFF55, "description": `**${pl.realName} умер от: ${src == null ? "неизвестно" : src.type }!**` }] }));
+mc.listen("onPlayerDie", (pl, src) => client.createMessage(config.bot.channel, { "embeds": [{ "color": 0xFFFF55, "description": `**${pl.realName} умер от: ${src == null ? "неизвестно" : src.name }!**` }] }));
