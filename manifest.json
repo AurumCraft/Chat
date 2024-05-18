@@ -9,6 +9,10 @@
       }
   ],
   "config": {
+    "settings": {
+      "clans": false,
+      "prefix": false
+    },
     "bot": {
       "status": "idle",
       "activity": { "type": 3, "name": "за чатом" },
