@@ -6,6 +6,7 @@ var client = Eris(`Bot ${config.bot.token}`, { intents: ["guildMessages"] });
 var antiSpam = {}
 
 client.connect();
+client.on("ready", () => client.editStatus(config.bot.status, config.bot.activity));
 
 mc.listen("onChat", (pl, message) => {
   let msg = replaceEmojis(message.trim(), config.emoji.list);
