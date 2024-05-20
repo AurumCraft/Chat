@@ -7,6 +7,8 @@ const antiSpam = {};
 
 client.connect();
 client.on("ready", () => client.editStatus(config.bot.status, config.bot.activity));
+client.on("error", (e) => log("Ошибка:", e));
+client.on("disconnect", () => { log("Отключение! Попытка переподключения..."); setTimeout(() => client.connect(), 1500)});
 
 mc.listen("onChat", (pl, message) => {
   const msg = replaceEmojis(message.trim(), config.emoji.list);
